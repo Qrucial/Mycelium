@@ -1,8 +1,8 @@
 # Mycelium &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/mycelium/blob/main/LICENSE)
-Mycelium | Making "decentralized" blockchain projects actually decentralized. 
+Making "decentralized" blockchain projects actually decentralized. Currently implementing the solutions: for Polkadot and Ethereum. 
 
 ### Assumption
-Crypto project with decentralization as one of the core principle.
+Cryptocurrency project with decentralization as one of the core principle.
 
 ### Problem
 The existence of (SPoF) single point of failures.
