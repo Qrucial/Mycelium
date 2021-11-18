@@ -31,6 +31,7 @@ contract Example_Mycelium {
     function function_unlocker() external pure returns (bool){
         // Require to be in list of unlockers
         return true;
+        // Also add time limit!
     }
 
     function critical_impact1() external view returns (bool) {

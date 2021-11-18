@@ -1,4 +1,4 @@
-# Mycelium &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/mycelium/blob/main/LICENSE)
+# Vornoi &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/voronoi/blob/main/LICENSE)
 Making "decentralized" blockchain projects actually decentralized. Currently implementing the solutions: for Polkadot and Ethereum. 
 
 ### Assumption
@@ -38,7 +38,7 @@ Always publish the address on multiple public sources so users can verify it bef
 ![Decentralized Organization](/images/DecentraLibExample.jpg)
 
 ### Contributing
-Mycelium is an open project which welcomes contribution. Please send us a pull request in case you have a contribution.
+Voronoi is an open project which welcomes contribution. Please send us a pull request in case you have a contribution.
 
 ### Licensing
-Mycelium is Licensed under [Apache2](https://github.com/Qrucial/mycelium/blob/main/LICENSE)
+Voronoi is Licensed under [Apache2](https://github.com/Qrucial/voronoi/blob/main/LICENSE)
