@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-// Example of Voronoi Solidity solution, by QRUCIAL OÜ
+// Draft, example of an extended Voronoi Solidity solution, by QRUCIAL OÜ
+// The extension is a more fine-tuned control on the unlock controls: a more DAO-like version.
 // Coder: Six
 pragma solidity ^0.8.10;
 
@@ -17,17 +18,17 @@ contract Voronoi_Example {
     event function_unlock(uint256 value);                           // Unlock event, when a function gets unlocked, unit256 -> func ID
 
     constructor() {
-        threshold = 4;                                              // An unlock happens when this threshold is reached or passed
-        unlockers[msg.sender] = 1;                                  // Add starter unlocker addresses, in this example 6
-        unlockers[0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2] = 1;
-        unlockers[0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c] = 1;
-        unlockers[0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db] = 1;
-        unlockers[0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB] = 1;
-        unlockers[0x617F2E2fD72FD9D5503197092aC168c91465E7f2] = 1;
-        function_locks[0] = 0;                                      // Locked function [0] - unlocker_role_add()
-        function_locks[1] = 0;                                      // Locked function [1] - unlocker_role_remove()
-        function_locks[2] = 0;                                      // Locked function [2] - critical_impact1()
-        function_locks[3] = 0;                                      // Locked function [3] - critical_impact2()
+        threshold = 4;                                              // An unlock happens when this threshold is reached or passed -> Could me more complex and each function have different threshold
+        unlockers[msg.sender] = 22;                                  // Add starter unlocker addresses, in this example 6
+        unlockers[0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2] = 10;
+        unlockers[0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c] = 25;
+        unlockers[0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db] = 4;  // unlimited number of votes? possibility to "reshare" votes all at once?
+        //function_locks[0] = 0;
+        // We will use structs here probably.
+        // function id X current_vote_weight
+        // unlocker addr X unlocker vote_weight
+        // ++ unlocker addr X funcid X used_weight // this is go be given back after executing funcid // bit similar to "staking"
+        // but how to remove the used_weight if votes are enough --> revoke vote func(unlockeraddr, funcid, weight_to_remove)
     }
 
     function unlocker_role_add(address new_unlocker) external returns (bool){
@@ -46,9 +47,9 @@ contract Voronoi_Example {
         return true;
     }
 
-    function unlock_voter(uint256 func_id) external returns (bool){
+    function unlock_voter(uint256 func_id, uint256 vote_weight) external returns (bool){
         require(unlockers[msg.sender] == 1);
-        unlockers[msg.sender] = 0;                                 // This could be improved, as now everyone can only vote once
+        unlockers[msg.sender] = 0;
         function_locks[func_id] = function_locks[func_id] + 1;
         return true;
     }
