@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Example of Voronoi Solidity solution, by QRUCIAL OÜ
-// Code state: DRAFT
-// Coder: six
+// Code state: Beta
+// Coder: Six
 
 pragma solidity ^0.8.11;
 
@@ -18,27 +18,19 @@ contract VoronoiToken {
 
     mapping(address => uint256) balances;
     mapping(address => mapping (address => uint256)) allowed;
-    mapping (address => uint256) internal unlockers;                                    // Address to threshold amount (single account can have multiple)
+    
+    mapping (uint256 => address) internal unlocker_ids;                                      // Needs to be in sync with the unlocker_ids, max 10
+    mapping (uint256 => uint256) internal unlocker_stakes;                                   // Address to threshold amount (single account can have multiple)
 
     uint256 private totalSupply_ = 100000000;
 
     address private admin;
     
     uint256 private _voronoi_count;
-    uint256 private threshold;  
+    uint256 private threshold;
+    uint256 private _voronoi_last_time;
 
     bool private _paused;
-
-    function v_reset() external returns (bool success){
-        emit major_impact_call(true);
-        require(_voronoi_count >= threshold);
-        unlockers[msg.sender] = 1;
-        _voronoi_count = 0;
-        unlockers[0x709843b3669cEf2168B626E785A7c670d7B2696D] = 1;
-        unlockers[0xf6D347765f1c5561C43F71b49a453a337711645b] = 1;
-        unlockers[0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6] = 1;
-        return true;
-    }
 
     constructor() {
         admin = msg.sender;
@@ -46,25 +38,42 @@ contract VoronoiToken {
         _paused = false;
         _voronoi_count = 0;
         threshold = 3;
-        unlockers[msg.sender] = 1;
-        unlockers[0x709843b3669cEf2168B626E785A7c670d7B2696D] = 1;
-        unlockers[0xf6D347765f1c5561C43F71b49a453a337711645b] = 1;
-        unlockers[0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6] = 1;
+        _voronoi_last_time = block.timestamp;
+        unlocker_ids[0] = 0x709843b3669cEf2168B626E785A7c670d7B2696D;
+        unlocker_ids[1] = 0xf6D347765f1c5561C43F71b49a453a337711645b;
+        unlocker_ids[2] = 0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6;
+        unlocker_ids[3] = 0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6;
+        unlocker_ids[4] = 0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6;
+        unlocker_ids[5] = 0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6;
+        unlocker_ids[6] = 0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6;
+        unlocker_ids[7] = 0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6;
+        unlocker_ids[8] = 0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6;
+        unlocker_ids[9] = 0x12EfEdf30745b8EC603e9930eFB48ed94d10c0A6;
     }
 
-    function unlocker_role_add(address new_unlocker) external returns (bool){
+    function v_reset() external returns (bool success){
         emit major_impact_call(true);
-        require(unlockers[msg.sender] == 1);
-        require(_voronoi_count >= threshold);
-        unlockers[new_unlocker] = 1;
+        require(block.timestamp >= _voronoi_last_time + 1 hours);                           // You can only do it once every hour to secure voting logic
+        _voronoi_last_time = block.timestamp;
+        _voronoi_count = 0;
+        unlocker_stakes[0] = 1;
+        unlocker_stakes[1] = 1;
+        unlocker_stakes[2] = 1;
+        unlocker_stakes[3] = 1;
+        unlocker_stakes[4] = 1;
+        unlocker_stakes[5] = 1;
+        unlocker_stakes[6] = 1;
+        unlocker_stakes[7] = 1;
+        unlocker_stakes[8] = 1;
+        unlocker_stakes[9] = 1;
         return true;
     }
 
-    function unlocker_role_remove(address rem_unlocker) external returns (bool){
+    function unlocker_role_change(uint256 _id, address _new_unlocker) external returns (bool){
         emit major_impact_call(true);
-        require(unlockers[msg.sender] == 1);
+        require(msg.sender == unlocker_ids[0]);
         require(_voronoi_count >= threshold);
-        unlockers[rem_unlocker] = 0;                              // Alternative option to remove fully
+        unlocker_ids[_id] = _new_unlocker;
         return true;
     }
 
@@ -80,7 +89,7 @@ contract VoronoiToken {
     function unpause() external returns (bool success) {
         require(msg.sender == admin, "Not authorized");
         emit major_impact_call(true);
-require(_voronoi_count >= threshold);
+        require(_voronoi_count >= threshold);
         _paused = false;
         return _paused;
     }
