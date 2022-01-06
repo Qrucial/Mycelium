@@ -1,5 +1,6 @@
 # Vornoi &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/voronoi/blob/main/LICENSE)
 Making "decentralized" blockchain projects actually decentralized. Currently implementing the solutions: for Polkadot and Ethereum. 
+The currently deployable Voronoi code can be smart contract folder. Voronoi ERC20 implementation is already in beta version.
 
 ### Assumption
 Cryptocurrency project with decentralization as one of the core principle.

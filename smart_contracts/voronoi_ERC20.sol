@@ -60,6 +60,7 @@ contract VoronoiToken {
     }
 
     function voronoi_stake_up() external returns (bool success){
+        event minor_impact_call(bool value);
         require(msg.sender == unlocker_ids[0] ||
         msg.sender == unlocker_ids[1] ||
         msg.sender == unlocker_ids[2] ||
@@ -170,6 +171,7 @@ contract VoronoiToken {
 
 
     function pause() external returns (bool success) {
+        emit major_impact_call(true);
         require(msg.sender == unlocker_ids[0] ||
         msg.sender == unlocker_ids[1] ||
         msg.sender == unlocker_ids[2] ||
@@ -187,6 +189,7 @@ contract VoronoiToken {
     }
 
     function unpause() external returns (bool success) {
+        emit major_impact_call(true);
         require(msg.sender == unlocker_ids[0] ||
         msg.sender == unlocker_ids[1] ||
         msg.sender == unlocker_ids[2] ||
@@ -204,6 +207,7 @@ contract VoronoiToken {
     }
 
     function adminChange(address newAdmin) external returns (address to) {
+        emit major_impact_call(true);
         require(msg.sender == unlocker_ids[0] ||
         msg.sender == unlocker_ids[1] ||
         msg.sender == unlocker_ids[2] ||
@@ -230,6 +234,7 @@ contract VoronoiToken {
     }
 
     function transfer(address _to, uint256 _value) external returns (bool success) {
+        emit minor_impact_call(true);
         require(_paused == false);
         require(_value <= balances[msg.sender]);
         balances[msg.sender] -= _value;
@@ -239,10 +244,10 @@ contract VoronoiToken {
     }
 
     function transferFrom(address _from, address _to, uint256 _value) external returns (bool success) {
+        emit minor_impact_call(true);
         require(_paused == false);
         require(_value <= balances[_from]);
         require(_value <= allowed[_from][msg.sender]);
-
         balances[_from] -= _value;
         allowed[_from][msg.sender] -= _value;
         balances[_to] += _value;
@@ -251,6 +256,7 @@ contract VoronoiToken {
     }
 
     function approve(address _spender, uint256 _value) external returns (bool success) {
+        emit minor_impact_call(true);
         allowed[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender, _value);
         return true;
@@ -261,8 +267,8 @@ contract VoronoiToken {
     }
 
     function adminWithdraw() external returns (bool success) {
-        require(msg.sender == admin, "Not authorized");
         emit major_impact_call(true);
+        require(msg.sender == admin, "Not authorized");
         require(_voronoi_count >= threshold);
         payable(msg.sender).transfer(address(this).balance);
         return true;
