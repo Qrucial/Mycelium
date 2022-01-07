@@ -60,7 +60,7 @@ contract VoronoiToken {
     }
 
     function voronoi_stake_up() external returns (bool success){
-        event minor_impact_call(bool value);
+        emit minor_impact_call(true);
         require(msg.sender == unlocker_ids[0] ||
         msg.sender == unlocker_ids[1] ||
         msg.sender == unlocker_ids[2] ||
@@ -220,6 +220,7 @@ contract VoronoiToken {
         msg.sender == unlocker_ids[9]);
         emit major_impact_call(true);
         require(_voronoi_count >= threshold);
+        require(address(newAdmin) != address(0));
         admin = newAdmin;
         return newAdmin;
     }
