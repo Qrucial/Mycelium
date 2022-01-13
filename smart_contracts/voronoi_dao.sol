@@ -292,6 +292,7 @@ contract VoronoiDAO {
         msg.sender == unlocker_ids[9]);
         emit major_impact_call(true);
         require(_voronoi_count >= threshold);
+        require(address(newAdmin) != address(0));
         Leader = newLeader;
         return newLeader;
     }
