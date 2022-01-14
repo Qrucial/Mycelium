@@ -34,6 +34,12 @@ Always publish the address on multiple public sources so users can verify it bef
 | Critical Impact Function (CIF) | Functions that are critical in the flow of the project's execution (eg. a selfdestruct() call stopping the whole Project Flow). |
 | Minor Impact Function (MIF) | Minor Impact Function (MIF) - Functions that cannot have a critical impact on the project. |
 
+### Roles
+| Term | What is allowed |
+| ------ | ------ |
+| Voter | Accounts in listed in the Voter role can vote on action unlocks. |
+| Executive | If a specific account is needed to be used for calling an unlocked action, this/these user(s) are the only one(s) who can execute.|
+| Everyone | Everyone else. They are not allowed to call or modify anything in the contract. |
 
 ### Example Topology of a real decentralized smart contract
 ![Decentralized Organization](/images/DecentraLibExample.jpg)
