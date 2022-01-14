@@ -21,7 +21,7 @@ contract VoronoiDAO {
     mapping (uint256 => uint256) internal nominee_vouch;
     uint256 private nominee_position;
 
-    address private Leader;
+    address private Executive;
     uint256 private _voronoi_count;
     uint256 private threshold;
     uint256 private _voronoi_last_time;
@@ -29,7 +29,7 @@ contract VoronoiDAO {
     bool private _paused;
 
     constructor() {
-        Leader = msg.sender;                                                              // The Leader is the one who starts the DAO! Can be modified by voting.
+        Executive = msg.sender;                                                              // The Executive is the one who starts the DAO! Can be modified by voting.
         _paused = false;
         _voronoi_count = 0;
         threshold = 4;
@@ -279,7 +279,7 @@ contract VoronoiDAO {
         return _paused;
     }
 
-    function LeaderChange(address newLeader) external returns (address to) {
+    function ExecutiveChange(address newExecutive) external returns (address to) {
         require(msg.sender == unlocker_ids[0] ||
         msg.sender == unlocker_ids[1] ||
         msg.sender == unlocker_ids[2] ||
@@ -293,13 +293,13 @@ contract VoronoiDAO {
         emit major_impact_call(true);
         require(_voronoi_count >= threshold);
         require(address(newAdmin) != address(0));
-        Leader = newLeader;
-        return newLeader;
+        Executive = newExecutive;
+        return newExecutive;
     }
 
 
-    function LeaderWithdraw() external returns (bool success) {                         // If the DAO decides, the Leader can withdraw all Coins.
-        require(msg.sender == Leader, "Not authorized");
+    function ExecutiveWithdraw() external returns (bool success) {                         // If the DAO decides, the Executive can withdraw all Coins.
+        require(msg.sender == Executive, "Not authorized");
         emit major_impact_call(true);
         require(voronoi_function_count[1] >= threshold);                                // Needs to be specifically allowed!
         payable(msg.sender).transfer(address(this).balance);
