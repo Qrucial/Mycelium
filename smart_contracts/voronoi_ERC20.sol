@@ -22,6 +22,24 @@ contract VoronoiToken {
     mapping (uint256 => address) internal unlocker_ids;                                  // Needs to be in sync with the unlocker_ids, max 10
     mapping (uint256 => uint256) internal unlocker_stakes;                               // Address to threshold amount (single account can have multiple)
 
+    // Draft! Mapping to be relaced to struct+mapping for more fine tuned controls
+    // Under brainstorming and heavy code changes
+    struct unlocker_struct {
+        uint256 stake;
+        bool restricted;
+    }
+    mapping (address => unlocker_struct)
+    accounts[] public voronoi_stakers;
+
+    struct voronoi_func_control {
+        uint256 threshold;
+        uint256 level;  // how many stakes are added?
+        bool unlocked;
+    }
+    mapping (uint256 => voronoi_func_control)
+
+    // End of draft!
+
     uint256 private totalSupply_ = 100000000;
     address private admin;
     uint256 private _voronoi_count;
