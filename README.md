@@ -41,6 +41,18 @@ Always publish the address on multiple public sources so users can verify it bef
 | Executive | If a specific account is needed to be used for calling an unlocked action, this/these user(s) are the only one(s) who can execute.|
 | Everyone | Everyone else. They are not allowed to call or modify anything in the contract. |
 
+### Current state of Voronoi
+Original vision started with smart contracts and signature logic.
+The best option so far looks like forking Substrate and buliding a pallet system.
+Voronoi-signature pallet -> verify and sign messages based on decentralized authorization logic
+Voronoi stays on "rust level".
+We take as much vanilla Substrate as we can. Just add required solution for the signing.
+Start with sudo and remove it later for community governance.
+Voronoi coin to be used for registering in the system and also to get verification and sign -> Pallet.
+We need to give examples on how to connect eg. Solidity to Voronoi.
+Voronoit toolbox.
+We start with signature solution for development. First figure out format for Solidity.
+
 ### Example Topology of a real decentralized smart contract
 ![Decentralized Organization](/images/DecentraLibExample.jpg)
 
