@@ -1,9 +1,9 @@
 # Vornoi &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/voronoi/blob/main/LICENSE)
-Making "decentralized" blockchain projects actually decentralized. Currently implementing the solutions: for Polkadot and Ethereum. 
-The currently deployable Voronoi code can be smart contract folder. Voronoi ERC20 implementation is already in beta version.
+Making "decentralized" blockchain projects actually decentralized and more secure.
+We take Substrate as our base system, implement ECDSA signing and verification logics for solving issues related to single point of failures and code that centralizes projecets.
 
 ### Assumption
-Cryptocurrency project with decentralization as one of the core principle.
+There are high demand projects that include decentralization and security in their core principles.
 
 ### Problem
 The existence of (SPoF) single point of failures.
@@ -34,7 +34,7 @@ Always publish the address on multiple public sources so users can verify it bef
 | Critical Impact Function (CIF) | Functions that are critical in the flow of the project's execution (eg. a selfdestruct() call stopping the whole Project Flow). |
 | Minor Impact Function (MIF) | Minor Impact Function (MIF) - Functions that cannot have a critical impact on the project. |
 
-### Roles
+### Roles (DRAFT)
 | Term | What is allowed |
 | ------ | ------ |
 | Voter | Accounts in listed in the Voter role can vote on action unlocks. |
