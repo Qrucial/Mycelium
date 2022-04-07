@@ -1,12 +1,14 @@
-# Vornoi &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/voronoi/blob/main/LICENSE)
+# Voronoi &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/voronoi/blob/main/LICENSE)
 Making "decentralized" blockchain projects actually decentralized and more secure.
 We take Substrate as our base system, implement ECDSA signing and verification logics for solving issues related to single point of failures and code that centralizes projecets.
 
 ### Assumption
 There are high demand projects that include decentralization and security in their core principles.
 
+There is a need for removing single accounts controling large amount of funds in smart contracts and other decentralized systems.
+
 ### Problem
-The existence of (SPoF) single point of failures.
+The existence of (SPoF) single point of failures in systems that are meant to be decentralized.
 
 ### SPoF examples
 The smart contract can be controlled (withdraw or pause) by a single account
