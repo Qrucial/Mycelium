@@ -1,8 +1,8 @@
-# Voronoi &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/voronoi/blob/main/LICENSE)
-Voronoi is the signing sub-system of QRUCIAL DAO for stopping unwanted behaviour in client systems.
+# Voronoi against SPoF &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](https://github.com/Qrucial/voronoi/blob/main/LICENSE)
+Voronoi is the ECDSA signing sub-system of QRUCIAL DAO. Its goal is to improve external projects by making them more decentralized.
 
 Making "decentralized" blockchain projects actually decentralized and more secure.
-We take Substrate as our base system, implement ECDSA signing and verification logics for solving issues related to single point of failures and code that centralizes projecets.
+In a Substrate pallet, the goal is to implement ECDSA sign/verify logics for solving issues related to single point of failures and code that centralizes projecets.
 
 ### Assumption
 There are high demand projects that include decentralization and security in their core principles.
